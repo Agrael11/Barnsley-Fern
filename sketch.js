@@ -3,22 +3,34 @@ const prob1 = 0.86;
 const prob2 = 0.93;
 const prob3 = 1;
 
-let repeats = 1000;
+let repeats = 2000;
 let alpha = 10;
-let size = 1.5;
+let pointSize = 1.3;
+let width = 900;
+let height = -1;
 let x = 0;
 let y = 0;
 
+let redChance = 0.1;
+let yellowChance = 0.15;
+
 function setup() {
-    createCanvas(600, 800);
+    height = width / 3 * 4;
+    createCanvas(width, height);
     background(0);
 }
 
 function drawPoint() {
-    stroke(0,255,0,alpha);
-    strokeWeight(size);
-    let px = map(x, -3, 3, 0, 600);
-    let py = map(y, 11, 0, 0, 800);
+    let rand = random(1);
+    if (rand < redChance)
+        stroke(255, 0, 0, alpha * 3);
+    else if (rand < yellowChance)
+        stroke(255, 255, 0, alpha * 3);
+    else
+        stroke(0, 255, 0, alpha);
+    strokeWeight(pointSize);
+    let px = map(x, -3, 3, 0, width);
+    let py = map(y, 11, 0, 0, height);
     point(px, py);
 }
 
